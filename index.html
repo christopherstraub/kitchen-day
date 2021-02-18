@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Find out who's kitchen day it is today."
+    />
+    <meta name="author" content="Christopher Straub" />
+    <title>Who's Kitchen Day?</title>
+
+    <link rel="canonical" href="" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="d-flex h-100 text-center text-white bg-dark">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div>
+          <h3 class="float-md-center mb-0">Who's Kitchen Day?</h3>
+        </div>
+      </header>
+
+      <main class="px-3">
+        <h1 class="mb-0">
+          It's
+          <span class="text-info"><span class="turn"></span>'s</span>
+          turn today.
+        </h1>
+        <div class="py-5">
+          <p class="lead mb-0">
+            Today is <strong><span class="date"></span></strong>.
+          </p>
+          <p class="lead mb-0">
+            The current time is <strong><span class="time"></span></strong>.
+          </p>
+          <p class="lead mb-0"><span class="time-until-next-turn"></span></p>
+        </div>
+
+        <p class="lead">
+          <a
+            href="#"
+            class="btn btn-lg btn-secondary fw-bold border-white bg-white"
+            >Are you sure?</a
+          >
+        </p>
+      </main>
+
+      <footer class="mt-auto text-white-50">
+        <p>
+          <a href="http://chrisstraub.com/" class="text-white" target="_blank"
+            >Christopher Straub</a
+          >
+        </p>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
