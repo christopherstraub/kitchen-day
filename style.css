@@ -1,19 +1,23 @@
 /*
  * Globals
  */
-
 /* Custom default button */
 .btn-secondary,
 .btn-secondary:hover,
 .btn-secondary:focus {
   color: #333;
-  text-shadow: none; /* Prevent inheritance from `body` */
+  text-shadow: none;
+  /* Prevent inheritance from `body` */
+}
+
+body {
+  color: #212529;
+  background-color: #f8f9fa;
 }
 
 /*
  * Base structure
  */
-
 .cover-container {
   max-width: 42em;
 }
@@ -21,8 +25,8 @@
 /*
  * Header
  */
-
-.nav-masthead .nav-link {
+.nav-masthead span {
+  cursor: pointer;
   padding: 0.25rem 0;
   font-weight: 700;
   color: #212529;
@@ -30,12 +34,11 @@
   border-bottom: 0.25rem solid transparent;
 }
 
-.nav-masthead .nav-link:hover,
-.nav-masthead .nav-link:focus {
+.nav-masthead span:hover, .nav-masthead span:focus {
   border-bottom-color: #0d6efd;
 }
 
-.nav-masthead .nav-link + .nav-link {
+.nav-masthead span + span {
   margin-left: 1rem;
 }
 
@@ -47,6 +50,65 @@
 .date,
 .time,
 .countdown {
-  font-weight: 500;
-  color: #ce700f;
+  color: #0d6efd;
 }
+
+a {
+  color: #212529;
+}
+
+a:hover, a:focus {
+  color: #0d6efd;
+}
+
+body,
+.nav-masthead span,
+.nav-masthead .active,
+.nav-masthead:hover,
+.nav-masthead:focus,
+.date,
+.time,
+.countdown,
+a,
+a:hover,
+a:focus {
+  -webkit-transition: all 750ms ease;
+  transition: all 750ms ease;
+}
+
+.dark {
+  color: #f8f9fa;
+  background-color: #212529;
+}
+
+.dark .nav-masthead span {
+  color: #f8f9fa;
+}
+
+.dark .nav-masthead span:hover, .dark .nav-masthead span:focus {
+  border-bottom-color: red;
+}
+
+.dark .nav-masthead span + span {
+  margin-left: 1rem;
+}
+
+.dark .nav-masthead .active {
+  color: #f8f9fa;
+  border-bottom-color: #f8f9fa;
+}
+
+.dark .date,
+.dark .time,
+.dark .countdown {
+  color: red;
+}
+
+.dark a {
+  color: #f8f9fa;
+}
+
+.dark a:hover, .dark a:focus {
+  color: red;
+}
+/*# sourceMappingURL=style.css.map */
