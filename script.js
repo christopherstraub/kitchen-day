@@ -48,8 +48,7 @@ function getTimeUntilNextTurn(date) {
     secondsUntilNextTurn -
       Math.floor(hoursUntilNextTurn) * 3600 -
       Math.floor(minutesUntilNextTurn - Math.floor(hoursUntilNextTurn) * 60) *
-        60 +
-      1,
+        60,
   ];
 }
 
