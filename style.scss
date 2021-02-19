@@ -1,0 +1,124 @@
+@import 'base';
+
+/*
+ * Globals
+ */
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+
+body {
+  color: $clr-black;
+  background-color: $clr-white;
+}
+
+/*
+ * Base structure
+ */
+
+.cover-container {
+  max-width: 42em;
+}
+
+/*
+ * Header
+ */
+
+.nav-masthead {
+  & span {
+    cursor: pointer;
+    padding: 0.25rem 0;
+    font-weight: 700;
+    color: $clr-black;
+    background-color: transparent;
+    border-bottom: 0.25rem solid transparent;
+
+    &:hover,
+    &:focus {
+      border-bottom-color: $clr-accent-light;
+    }
+
+    & + span {
+      margin-left: 1rem;
+    }
+  }
+
+  & .active {
+    color: $clr-black;
+    border-bottom-color: $clr-black;
+  }
+}
+
+.date,
+.time,
+.countdown {
+  color: $clr-accent-light;
+}
+
+a {
+  color: $clr-black;
+
+  &:hover,
+  &:focus {
+    color: $clr-accent-light;
+  }
+}
+
+body,
+.nav-masthead span,
+.nav-masthead .active,
+.nav-masthead:hover,
+.nav-masthead:focus,
+.date,
+.time,
+.countdown,
+a,
+a:hover,
+a:focus {
+  transition: all 750ms ease;
+}
+
+// Dark mode.
+.dark {
+  color: $clr-white;
+  background-color: $clr-black;
+
+  & .nav-masthead {
+    & span {
+      color: $clr-white;
+
+      &:hover,
+      &:focus {
+        border-bottom-color: $clr-accent-dark;
+      }
+
+      & + span {
+        margin-left: 1rem;
+      }
+    }
+
+    & .active {
+      color: $clr-white;
+      border-bottom-color: $clr-white;
+    }
+  }
+
+  & .date,
+  & .time,
+  & .countdown {
+    color: $clr-accent-dark;
+  }
+
+  & a {
+    color: $clr-white;
+    &:hover,
+    &:focus {
+      color: $clr-accent-dark;
+    }
+  }
+}

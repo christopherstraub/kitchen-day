@@ -37,27 +37,22 @@
       }
     </style>
   </head>
-  <body class="d-flex h-100 text-center text-black bg-light">
+  <body class="d-flex h-100 text-center">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
       <header class="mb-auto">
         <div>
-          <h3 class="float-md-start mb-1">Who's Kitchen Day?</h3>
+          <h3 class="float-md-start mb-2">Who's Kitchen Day?</h3>
           <nav class="nav nav-masthead justify-content-center float-md-end">
-            <a class="nav-link active" aria-current="page" href="#">Light</a>
-            <a class="nav-link" href="#">Dark</a>
+            <span class="active">Light</span>
+            <span>Dark</span>
           </nav>
         </div>
       </header>
 
       <main class="px-3">
         <h1 class="mb-0">
-          It's
-          <strong
-            ><span class="text-primary"
-              ><span class="turn"></span>'s</span
-            ></strong
-          >
-          turn today.
+          It's <span class="landing"><span class="turn"></span>'s</span> turn
+          today.
         </h1>
         <div class="pt-4">
           <p class="lead mb-0">Today is <span class="date"></span>.</p>
@@ -72,14 +67,15 @@
         </div>
       </main>
 
-      <footer class="mt-auto text-white-50">
+      <footer class="mt-auto">
         <p>
-          <a href="http://chrisstraub.com/" class="text-white" target="_blank"
+          <a href="http://chrisstraub.com/" class="" target="_blank"
             >Christopher Straub</a
           >
         </p>
       </footer>
     </div>
     <script src="script.js"></script>
+    <script src="darkmode.js"></script>
   </body>
 </html>
