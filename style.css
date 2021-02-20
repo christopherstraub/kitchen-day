@@ -35,7 +35,7 @@ body {
 }
 
 .nav-masthead span:hover, .nav-masthead span:focus {
-  border-bottom-color: #0d6efd;
+  border-bottom-color: #1000ff;
 }
 
 .nav-masthead span + span {
@@ -50,7 +50,7 @@ body {
 .date,
 .time,
 .countdown {
-  color: #0d6efd;
+  color: #1000ff;
 }
 
 a {
@@ -58,7 +58,7 @@ a {
 }
 
 a:hover, a:focus {
-  color: #0d6efd;
+  color: #1000ff;
 }
 
 body,
@@ -86,7 +86,7 @@ a:focus {
 }
 
 .dark .nav-masthead span:hover, .dark .nav-masthead span:focus {
-  border-bottom-color: red;
+  border-bottom-color: #63beff;
 }
 
 .dark .nav-masthead span + span {
@@ -101,7 +101,7 @@ a:focus {
 .dark .date,
 .dark .time,
 .dark .countdown {
-  color: red;
+  color: #63beff;
 }
 
 .dark a {
@@ -109,6 +109,6 @@ a:focus {
 }
 
 .dark a:hover, .dark a:focus {
-  color: red;
+  color: #63beff;
 }
 /*# sourceMappingURL=style.css.map */
