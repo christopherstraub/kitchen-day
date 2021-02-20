@@ -13,7 +13,7 @@ body {
   border-color: #212529;
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover, .btn-secondary:focus {
   color: #212529;
   background-color: #f8f9fa;
 }

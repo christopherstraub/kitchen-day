@@ -15,7 +15,8 @@ body {
   background-color: $clr-black;
   border-color: $clr-black;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: $clr-black;
     background-color: $clr-white;
   }
