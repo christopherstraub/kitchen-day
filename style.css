@@ -28,10 +28,11 @@ body {
 .nav-masthead span {
   cursor: pointer;
   padding: 0.25rem 0;
-  font-weight: 700;
+  font-weight: lighter;
   color: #212529;
   background-color: transparent;
-  border-bottom: 0.25rem solid transparent;
+  border-bottom: 0.1rem solid transparent;
+  text-transform: none;
 }
 
 .nav-masthead span:hover, .nav-masthead span:focus {
@@ -55,10 +56,12 @@ body {
 
 a {
   color: #212529;
+  text-decoration: none;
 }
 
-a:hover, a:focus {
-  color: #1000ff;
+a:hover {
+  color: #212529;
+  text-decoration: underline;
 }
 
 body,
@@ -69,11 +72,9 @@ body,
 .date,
 .time,
 .countdown,
-a,
-a:hover,
-a:focus {
-  -webkit-transition: all 750ms ease;
-  transition: all 750ms ease;
+a {
+  -webkit-transition: color 750ms ease, background-color 750ms ease, border-bottom 750ms ease, border-bottom-color 750ms ease;
+  transition: color 750ms ease, background-color 750ms ease, border-bottom 750ms ease, border-bottom-color 750ms ease;
 }
 
 .dark {
@@ -106,9 +107,5 @@ a:focus {
 
 .dark a {
   color: #f8f9fa;
-}
-
-.dark a:hover, .dark a:focus {
-  color: #63beff;
 }
 /*# sourceMappingURL=style.css.map */

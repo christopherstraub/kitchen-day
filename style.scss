@@ -33,10 +33,11 @@ body {
   & span {
     cursor: pointer;
     padding: 0.25rem 0;
-    font-weight: 700;
+    font-weight: lighter;
     color: $clr-black;
     background-color: transparent;
-    border-bottom: 0.25rem solid transparent;
+    border-bottom: 0.1rem solid transparent;
+    text-transform: none;
 
     &:hover,
     &:focus {
@@ -62,10 +63,11 @@ body {
 
 a {
   color: $clr-black;
+  text-decoration: none;
 
-  &:hover,
-  &:focus {
-    color: $clr-accent-light;
+  &:hover {
+    color: $clr-black;
+    text-decoration: underline;
   }
 }
 
@@ -77,10 +79,9 @@ body,
 .date,
 .time,
 .countdown,
-a,
-a:hover,
-a:focus {
-  transition: all 750ms ease;
+a {
+  transition: color 750ms ease, background-color 750ms ease,
+    border-bottom 750ms ease, border-bottom-color 750ms ease;
 }
 
 // Dark mode.
@@ -116,9 +117,5 @@ a:focus {
 
   & a {
     color: $clr-white;
-    &:hover,
-    &:focus {
-      color: $clr-accent-dark;
-    }
   }
 }
