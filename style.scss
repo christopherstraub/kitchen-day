@@ -1,5 +1,10 @@
 @import 'base';
 
+body {
+  color: $clr-black;
+  background-color: $clr-white;
+}
+
 /*
  * Globals
  */
@@ -14,11 +19,6 @@
     color: $clr-black;
     background-color: $clr-white;
   }
-}
-
-body {
-  color: $clr-black;
-  background-color: $clr-white;
 }
 
 /*
@@ -76,12 +76,14 @@ a {
 }
 
 body,
+.btn-secondary,
 .date,
 .time,
 .countdown,
 a {
   transition: color 750ms ease, background-color 750ms ease,
-    border-bottom 750ms ease, border-bottom-color 750ms ease;
+    border-bottom 750ms ease, border-bottom-color 750ms ease,
+    border-color 750ms ease;
 }
 
 // Dark mode.

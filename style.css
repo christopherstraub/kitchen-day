@@ -1,3 +1,8 @@
+body {
+  color: #212529;
+  background-color: #f8f9fa;
+}
+
 /*
  * Globals
  */
@@ -9,11 +14,6 @@
 }
 
 .btn-secondary:hover {
-  color: #212529;
-  background-color: #f8f9fa;
-}
-
-body {
   color: #212529;
   background-color: #f8f9fa;
 }
@@ -68,12 +68,13 @@ a:hover {
 }
 
 body,
+.btn-secondary,
 .date,
 .time,
 .countdown,
 a {
-  -webkit-transition: color 750ms ease, background-color 750ms ease, border-bottom 750ms ease, border-bottom-color 750ms ease;
-  transition: color 750ms ease, background-color 750ms ease, border-bottom 750ms ease, border-bottom-color 750ms ease;
+  -webkit-transition: color 750ms ease, background-color 750ms ease, border-bottom 750ms ease, border-bottom-color 750ms ease, border-color 750ms ease;
+  transition: color 750ms ease, background-color 750ms ease, border-bottom 750ms ease, border-bottom-color 750ms ease, border-color 750ms ease;
 }
 
 .dark {
