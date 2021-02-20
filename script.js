@@ -1,4 +1,5 @@
 // Variable initializations.
+var turnElement = document.querySelector('.turn');
 var dateElement = document.querySelector('.date');
 var timeElement = document.querySelector('.time');
 var countdownElement = document.querySelector('.countdown');
@@ -8,58 +9,58 @@ var people = [
   { index: 1, name: 'not Christopher' },
 ];
 
-const constraint = {
+const lastTurn = {
   personIndex: people[0].index,
-  lastTurnDate: new Date(Date.UTC(2021, 0, 10, 6, 0, 0)),
+  date: new Date(Date.UTC(2021, 0, 10, 6, 0, 0)),
 };
 
 // Functions declarations.
-function getDaysSinceEpoch(date) {
-  return date / 8.64e7;
-}
 
-function setCurrentTurn(people, date) {
+// getTurn tak
+function getTurn(dateChecked, lastTurn) {
   var fullDaysSinceLastTurn = Math.floor(
-    getDaysSinceEpoch(date) - getDaysSinceEpoch(constraint.lastTurnDate)
+    Math.floor((dateChecked - lastTurn.date) / 8.64e7)
   );
 
-  if (fullDaysSinceLastTurn % 2 === 0)
-    document.getElementsByClassName('turn')[0].textContent = people[0].name;
-  else document.getElementsByClassName('turn')[0].textContent = people[1].name;
+  if (fullDaysSinceLastTurn % 2 === 0) return people[lastTurn.personIndex].name;
+  else if (lastTurn.personIndex === 0) return people[1].name;
+  else return people[0].name;
 }
 
-function getTimeUntilNextTurn(date) {
-  var daysSinceLastTurn =
-    getDaysSinceEpoch(date) - getDaysSinceEpoch(constraint.lastTurnDate);
+function setTurn(turn) {
+  turnElement.textContent = turn;
+}
 
-  var fullDaysSinceLastTurn = Math.floor(
-    getDaysSinceEpoch(date) - getDaysSinceEpoch(constraint.lastTurnDate)
+function getCountdown(dateChecked, lastTurn) {
+  var millisecondsSinceLastTurn = dateChecked - lastTurn.date;
+
+  var millisecondsUntilNextTurn =
+    Math.ceil(millisecondsSinceLastTurn / 8.64e7) * 8.64e7 -
+    millisecondsSinceLastTurn;
+
+  var fullHoursUntilNextTurn = Math.floor(millisecondsUntilNextTurn / 3.6e6);
+  var fullMinutesUntilNextTurn = Math.floor(
+    (millisecondsUntilNextTurn - fullHoursUntilNextTurn * 3.6e6) / 6e4
   );
-
-  var daysUntilNextTurn = 1 - (daysSinceLastTurn - fullDaysSinceLastTurn);
-
-  var hoursUntilNextTurn = daysUntilNextTurn * 24;
-  var minutesUntilNextTurn = daysUntilNextTurn * 1440;
-  var secondsUntilNextTurn = daysUntilNextTurn * 86400;
+  var fullSecondsUntilNextTurn = Math.floor(
+    (millisecondsUntilNextTurn -
+      fullHoursUntilNextTurn * 3.6e6 -
+      fullMinutesUntilNextTurn * 6e4) /
+      1000
+  );
 
   return [
-    hoursUntilNextTurn,
-    minutesUntilNextTurn - Math.floor(hoursUntilNextTurn) * 60,
-    secondsUntilNextTurn -
-      Math.floor(hoursUntilNextTurn) * 3600 -
-      Math.floor(minutesUntilNextTurn - Math.floor(hoursUntilNextTurn) * 60) *
-        60,
+    fullHoursUntilNextTurn,
+    fullMinutesUntilNextTurn,
+    fullSecondsUntilNextTurn,
   ];
 }
 
-function getPaddedTimeUntilNextTurn(timeUntilNextTurn) {
-  var flooredTimeUntilNextTurn = timeUntilNextTurn.map(Math.floor);
-  return flooredTimeUntilNextTurn.map(
-    (value) => (value < 10 ? '0' : '') + value
-  );
+function getPaddedCountdown(countdown) {
+  return countdown.map((value) => (value < 10 ? '0' : '') + value);
 }
 
-function setDate(dateElement) {
+function setDate(dateElement, date) {
   dateElement.textContent = new Intl.DateTimeFormat('en-US', {
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     weekday: 'long',
@@ -69,7 +70,7 @@ function setDate(dateElement) {
   }).format(date);
 }
 
-function setTime(timeElement) {
+function setTime(timeElement, date) {
   timeElement.textContent = new Intl.DateTimeFormat('en-US', {
     timeZoneName: 'short',
     hour: 'numeric',
@@ -78,21 +79,21 @@ function setTime(timeElement) {
   }).format(date);
 }
 
-function setCountdown(countdownElement, paddedTimeUntilNextTurn) {
-  countdownElement.textContent = `${paddedTimeUntilNextTurn[0]}:${paddedTimeUntilNextTurn[1]}:${paddedTimeUntilNextTurn[2]}`;
+function setCountdown(countdownElement, paddedCountdown) {
+  countdownElement.textContent = `${paddedCountdown[0]}:${paddedCountdown[1]}:${paddedCountdown[2]}`;
 }
 
 function update() {
-  date = new Date();
+  date = new Date().setMilliseconds(0);
 
-  setCurrentTurn(people, date);
+  setDate(dateElement, date);
+  setTime(timeElement, date);
 
-  var timeUntilNextTurn = getTimeUntilNextTurn(date);
-  var paddedTimeUntilNextTurn = getPaddedTimeUntilNextTurn(timeUntilNextTurn);
+  setTurn(getTurn(date, lastTurn));
 
-  setDate(dateElement);
-  setTime(timeElement);
-  setCountdown(countdownElement, paddedTimeUntilNextTurn);
+  var paddedCountdown = getPaddedCountdown(getCountdown(date, lastTurn));
+
+  setCountdown(countdownElement, paddedCountdown);
 }
 
 // Function calls.
