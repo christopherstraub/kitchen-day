@@ -3,13 +3,14 @@ var turnElement = document.querySelector('.turn');
 var dateElement = document.querySelector('.date');
 var timeElement = document.querySelector('.time');
 var countdownElement = document.querySelector('.countdown');
+var switchTurnsButton = document.querySelector('.switch-turns');
 
 var people = [
   { index: 0, name: 'Christopher' },
   { index: 1, name: 'not Christopher' },
 ];
 
-const lastTurn = {
+var lastTurn = {
   personIndex: people[0].index,
   date: new Date(Date.UTC(2021, 0, 10, 6, 0, 0)),
 };
@@ -97,5 +98,15 @@ function update() {
 }
 
 // Function calls.
+
 update();
 setInterval(update, 1000);
+
+switchTurnsButton.addEventListener('click', () => {
+  turnElement.textContent =
+    turnElement.textContent === people[0].name
+      ? people[1].name
+      : people[0].name;
+
+  lastTurn.personIndex = lastTurn.personIndex === 0 ? 1 : 0;
+});

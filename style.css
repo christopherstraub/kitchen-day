@@ -2,12 +2,15 @@
  * Globals
  */
 /* Custom default button */
-.btn-secondary,
-.btn-secondary:hover,
-.btn-secondary:focus {
-  color: #333;
-  text-shadow: none;
-  /* Prevent inheritance from `body` */
+.btn-secondary {
+  color: #f8f9fa;
+  background-color: #212529;
+  border-color: #212529;
+}
+
+.btn-secondary:hover {
+  color: #212529;
+  background-color: #f8f9fa;
 }
 
 body {
@@ -65,10 +68,6 @@ a:hover {
 }
 
 body,
-.nav-masthead span,
-.nav-masthead .active,
-.nav-masthead:hover,
-.nav-masthead:focus,
 .date,
 .time,
 .countdown,
@@ -78,6 +77,17 @@ a {
 }
 
 .dark {
+  color: #f8f9fa;
+  background-color: #212529;
+}
+
+.dark .btn-secondary {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+
+.dark .btn-secondary:hover {
   color: #f8f9fa;
   background-color: #212529;
 }

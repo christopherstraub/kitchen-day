@@ -5,11 +5,15 @@
  */
 
 /* Custom default button */
-.btn-secondary,
-.btn-secondary:hover,
-.btn-secondary:focus {
-  color: #333;
-  text-shadow: none; /* Prevent inheritance from `body` */
+.btn-secondary {
+  color: $clr-white;
+  background-color: $clr-black;
+  border-color: $clr-black;
+
+  &:hover {
+    color: $clr-black;
+    background-color: $clr-white;
+  }
 }
 
 body {
@@ -72,10 +76,6 @@ a {
 }
 
 body,
-.nav-masthead span,
-.nav-masthead .active,
-.nav-masthead:hover,
-.nav-masthead:focus,
 .date,
 .time,
 .countdown,
@@ -88,6 +88,17 @@ a {
 .dark {
   color: $clr-white;
   background-color: $clr-black;
+
+  .btn-secondary {
+    color: $clr-black;
+    background-color: $clr-white;
+    border-color: $clr-white;
+
+    &:hover {
+      color: $clr-white;
+      background-color: $clr-black;
+    }
+  }
 
   & .nav-masthead {
     & span {
