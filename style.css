@@ -8,8 +8,8 @@ body {
  */
 /* Custom default button */
 .btn-secondary {
-  color: #f8f9fa;
-  background-color: #212529;
+  color: #212529;
+  background-color: #f8f9fa;
   border-color: #212529;
 }
 
@@ -68,7 +68,6 @@ a:hover {
 }
 
 body,
-.btn-secondary,
 .date,
 .time,
 .countdown,
@@ -83,14 +82,9 @@ a {
 }
 
 .dark .btn-secondary {
-  color: #212529;
-  background-color: #f8f9fa;
-  border-color: #f8f9fa;
-}
-
-.dark .btn-secondary:hover {
   color: #f8f9fa;
   background-color: #212529;
+  border-color: #f8f9fa;
 }
 
 .dark .nav-masthead span {

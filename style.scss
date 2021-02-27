@@ -11,8 +11,8 @@ body {
 
 /* Custom default button */
 .btn-secondary {
-  color: $clr-white;
-  background-color: $clr-black;
+  color: $clr-black;
+  background-color: $clr-white;
   border-color: $clr-black;
 
   &:hover,
@@ -77,7 +77,6 @@ a {
 }
 
 body,
-.btn-secondary,
 .date,
 .time,
 .countdown,
@@ -93,14 +92,9 @@ a {
   background-color: $clr-black;
 
   .btn-secondary {
-    color: $clr-black;
-    background-color: $clr-white;
+    color: $clr-white;
+    background-color: $clr-black;
     border-color: $clr-white;
-
-    &:hover {
-      color: $clr-white;
-      background-color: $clr-black;
-    }
   }
 
   & .nav-masthead {
