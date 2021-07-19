@@ -11,7 +11,7 @@ var people = [
 ];
 
 var lastTurn = {
-  personIndex: people[1].index,
+  personIndex: people[0].index,
   date: new Date(Date.UTC(2021, 2, 15, 5, 0, 0)),
 };
 
