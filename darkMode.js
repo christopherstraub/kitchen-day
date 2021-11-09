@@ -1,5 +1,5 @@
 var bodyElement = document.querySelector('body');
-var navItemElements = document.querySelectorAll('.nav-masthead > span');
+var navItemElements = document.querySelectorAll('.nav-masthead > button');
 
 navItemElements.forEach((element) => {
   element.addEventListener('click', () => {

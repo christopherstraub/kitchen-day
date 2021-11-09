@@ -20,6 +20,10 @@ body {
     color: $clr-black;
     background-color: $clr-white;
   }
+
+  &.selected {
+    opacity: 0.5;
+  }
 }
 
 /*
@@ -27,7 +31,7 @@ body {
  */
 
 .cover-container {
-  max-width: 42em;
+  max-width: 48em;
 }
 
 /*
@@ -35,13 +39,13 @@ body {
  */
 
 .nav-masthead {
-  & span {
+  & button {
     cursor: pointer;
-    padding: 0.25rem 0;
-    font-weight: light;
+    padding: 0.25rem;
     color: $clr-black;
     background-color: transparent;
-    border-bottom: 0.1rem solid transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
     text-transform: none;
 
     &:hover,
@@ -49,13 +53,12 @@ body {
       border-bottom-color: $clr-accent-light;
     }
 
-    & + span {
+    & + button {
       margin-left: 1rem;
     }
   }
 
   & .active {
-    color: $clr-black;
     border-bottom-color: $clr-black;
   }
 }
@@ -99,21 +102,23 @@ a {
   }
 
   & .nav-masthead {
-    & span {
+    & button {
       color: $clr-white;
+      background-color: transparent;
+      border: 0;
+      border-bottom: 1px solid transparent;
 
       &:hover,
       &:focus {
         border-bottom-color: $clr-accent-dark;
       }
 
-      & + span {
+      & + button {
         margin-left: 1rem;
       }
     }
 
     & .active {
-      color: $clr-white;
       border-bottom-color: $clr-white;
     }
   }

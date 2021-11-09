@@ -2,8 +2,12 @@
 var turnElement = document.querySelector('.turn');
 var dateElement = document.querySelector('.date');
 var timeElement = document.querySelector('.time');
+var datePrefixElement = document.querySelector('.date-prefix');
+var timePrefixElement = document.querySelector('.time-prefix');
 var countdownElement = document.querySelector('.countdown');
-var switchTurnsButton = document.querySelector('.switch-turns');
+var previousDayElement = document.querySelector('.previous-day');
+var nextDayElement = document.querySelector('.next-day');
+var todayElement = document.querySelector('.today');
 
 var people = [
   { index: 0, name: 'Christopher' },
@@ -12,12 +16,20 @@ var people = [
 
 var lastTurn = {
   personIndex: people[1].index,
-  date: new Date(Date.UTC(2021, 2, 15, 5, 0, 0)),
+  date: new Date(Date.UTC(2021, 2, 15, 6)),
 };
+
+var dateOffset = 0;
 
 // Functions declarations.
 
-// getTurn tak
+// Check whether a date is observing daylight saving time.
+function isDST(date) {
+  let jan = new Date(date.getFullYear(), 0, 1).getTimezoneOffset();
+  let jul = new Date(date.getFullYear(), 6, 1).getTimezoneOffset();
+  return Math.max(jan, jul) !== date.getTimezoneOffset();
+}
+
 function getTurn(dateChecked, lastTurn) {
   var fullDaysSinceLastTurn = Math.floor(
     Math.floor((dateChecked - lastTurn.date) / 8.64e7)
@@ -29,10 +41,19 @@ function getTurn(dateChecked, lastTurn) {
 }
 
 function setTurn(turn) {
-  turnElement.textContent = turn;
+  turnElement.textContent =
+    dateOffset < 0
+      ? `
+  It was ${turn}'s turn this day.`
+      : dateOffset > 0
+      ? `
+  It's ${turn}'s turn this day.`
+      : `It's ${turn}'s turn today.`;
 }
 
 function getCountdown(dateChecked, lastTurn) {
+  if (isDST(dateChecked)) dateChecked.setHours(dateChecked.getHours() + 1);
+
   var millisecondsSinceLastTurn = dateChecked - lastTurn.date;
 
   var millisecondsUntilNextTurn =
@@ -80,21 +101,37 @@ function setTime(timeElement, date) {
   }).format(date);
 }
 
+function setDatePrefix() {
+  datePrefixElement.textContent = !dateOffset ? 'Today is' : 'On';
+}
+
+function setTimePrefix() {
+  timePrefixElement.textContent = !dateOffset ? 'The current time is' : 'At';
+}
+
 function setCountdown(countdownElement, paddedCountdown) {
   countdownElement.textContent = `${paddedCountdown[0]}:${paddedCountdown[1]}:${paddedCountdown[2]}`;
 }
 
 function update() {
-  date = new Date().setMilliseconds(0);
+  date = new Date();
+  date.setDate(date.getDate() + dateOffset);
+  date.setMilliseconds(0);
+
+  setTurn(getTurn(date, lastTurn));
 
   setDate(dateElement, date);
   setTime(timeElement, date);
 
-  setTurn(getTurn(date, lastTurn));
+  setDatePrefix();
+  setTimePrefix();
 
   var paddedCountdown = getPaddedCountdown(getCountdown(date, lastTurn));
 
   setCountdown(countdownElement, paddedCountdown);
+
+  if (dateOffset !== 0) todayElement.classList.remove('selected');
+  else todayElement.classList.add('selected');
 }
 
 // Function calls.
@@ -102,11 +139,17 @@ function update() {
 update();
 setInterval(update, 1000);
 
-switchTurnsButton.addEventListener('click', () => {
-  turnElement.textContent =
-    turnElement.textContent === people[0].name
-      ? people[1].name
-      : people[0].name;
+previousDayElement.addEventListener('click', () => {
+  dateOffset--;
+  update();
+});
 
-  lastTurn.personIndex = lastTurn.personIndex === 0 ? 1 : 0;
+nextDayElement.addEventListener('click', () => {
+  dateOffset++;
+  update();
+});
+
+todayElement.addEventListener('click', () => {
+  dateOffset = 0;
+  update();
 });
