@@ -117,10 +117,15 @@ const setEasterEgg = (month, day, year) => {
   if (month === 12 && day === 7) {
     easterEggElement.textContent = '🐕🎉🎂🎁';
     easterEggElement.classList.remove('visually-hidden');
+    turnElement.classList.add('easter-egg-text', '🐕');
   } else if (month === 12 && day === 25) {
     easterEggElement.textContent = '🧔🎉🎂🎁';
     easterEggElement.classList.remove('visually-hidden');
-  } else easterEggElement.classList.add('visually-hidden');
+    turnElement.classList.add('easter-egg-text', '🧔');
+  } else {
+    easterEggElement.classList.add('visually-hidden');
+    turnElement.classList.remove('easter-egg-text', '🐕', '🧔');
+  }
 };
 
 const update = () => {

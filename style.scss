@@ -133,3 +133,42 @@ a {
     color: $clr-white;
   }
 }
+
+.easter-egg-text.🐕 {
+  background: radial-gradient(
+    circle,
+    #f85a8f 0%,
+    #c63edf 20%,
+    #48c8da 40%,
+    #4ec952 60%,
+    #d6e931 100%
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 400%;
+  animation: gradient 1.5s linear infinite alternate;
+}
+
+.easter-egg-text.🧔 {
+  background: radial-gradient(
+    circle,
+    #1fd537 0%,
+    #28e942 20%,
+    #f3dd19 40%,
+    #e25a1b 60%,
+    #f30212 80%
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 400%;
+  animation: gradient 2.5s linear infinite alternate;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
