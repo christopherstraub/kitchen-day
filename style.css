@@ -43,7 +43,7 @@ body {
 }
 
 .nav-masthead button:hover, .nav-masthead button:focus {
-  border-bottom-color: #1000ff;
+  border-bottom-color: #0071d1;
 }
 
 .nav-masthead button + button {
@@ -57,7 +57,7 @@ body {
 .date,
 .time,
 .countdown {
-  color: #1000ff;
+  color: #0071d1;
 }
 
 a {
