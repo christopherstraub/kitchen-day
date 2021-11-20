@@ -172,3 +172,27 @@ a {
     background-position: 100%;
   }
 }
+
+.easter-egg-text.🦃 {
+  background: radial-gradient(
+    circle,
+    #eb8a0c 0%,
+    #e6aa3c 20%,
+    #e9d523 40%,
+    #e25a1b 60%,
+    #cc490c 80%
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 400%;
+  animation: gradient 2.5s linear infinite alternate;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
