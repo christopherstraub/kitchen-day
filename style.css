@@ -77,8 +77,8 @@ body,
 .time,
 .countdown,
 a {
-  -webkit-transition: color 750ms ease, background-color 750ms ease, border-bottom 750ms ease, border-bottom-color 750ms ease, border-color 750ms ease;
-  transition: color 750ms ease, background-color 750ms ease, border-bottom 750ms ease, border-bottom-color 750ms ease, border-color 750ms ease;
+  -webkit-transition: color 750ms ease, background-color 750ms ease, border-bottom 750ms ease, border-bottom-color 750ms ease, border-color 750ms ease;
+  transition: color 750ms ease, background-color 750ms ease, border-bottom 750ms ease, border-bottom-color 750ms ease, border-color 750ms ease;
 }
 
 .dark {
