@@ -11,6 +11,8 @@ body {
   color: #212529;
   background-color: #f8f9fa;
   border-color: #212529;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
 }
 
 .btn-secondary:hover, .btn-secondary:focus {
@@ -20,6 +22,12 @@ body {
 
 .btn-secondary.selected {
   opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .btn-secondary {
+    padding: 0.5rem;
+  }
 }
 
 /*

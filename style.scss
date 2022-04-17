@@ -14,6 +14,9 @@ body {
   background-color: $clr-light;
   border-color: $clr-dark;
 
+  // Disable double-tap to zoom on touchscreens.
+  touch-action: manipulation;
+
   &:hover,
   &:focus {
     color: $clr-dark;
@@ -22,6 +25,12 @@ body {
 
   &.selected {
     opacity: 0.5;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-secondary {
+    padding: 0.5rem;
   }
 }
 
