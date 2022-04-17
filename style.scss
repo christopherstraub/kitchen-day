@@ -8,8 +8,7 @@ body {
 /*
  * Globals
  */
-
-/* Custom default button */
+// Custom default button.
 .btn-secondary {
   color: $clr-dark;
   background-color: $clr-light;
@@ -29,7 +28,6 @@ body {
 /*
  * Base structure
  */
-
 .cover-container {
   max-width: 48em;
 }
@@ -79,12 +77,18 @@ a {
   }
 }
 
+.date-input {
+  border-radius: 5px;
+  border: 1px solid $clr-dark;
+}
+
 body,
 .btn-secondary,
 .date,
 .time,
 .countdown,
-a {
+a,
+.date-input {
   transition: color 750ms ease, background-color 750ms ease,
     border-bottom 750ms ease, border-bottom-color 750ms ease,
     border-color 750ms ease;
@@ -132,8 +136,16 @@ a {
   & a {
     color: $clr-light;
   }
+
+  .date-input {
+    color: $clr-light;
+    background-color: $clr-dark;
+    border-color: $clr-light;
+    color-scheme: dark;
+  }
 }
 
+// Easter eggs.
 .easter-egg-text.🐕 {
   background: radial-gradient(
     circle,

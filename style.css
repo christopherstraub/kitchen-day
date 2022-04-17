@@ -7,7 +7,6 @@ body {
 /*
  * Globals
  */
-/* Custom default button */
 .btn-secondary {
   color: #212529;
   background-color: #f8f9fa;
@@ -71,12 +70,18 @@ a:hover {
   text-decoration: underline;
 }
 
+.date-input {
+  border-radius: 5px;
+  border: 1px solid #212529;
+}
+
 body,
 .btn-secondary,
 .date,
 .time,
 .countdown,
-a {
+a,
+.date-input {
   -webkit-transition: color 750ms ease, background-color 750ms ease, border-bottom 750ms ease, border-bottom-color 750ms ease, border-color 750ms ease;
   transition: color 750ms ease, background-color 750ms ease, border-bottom 750ms ease, border-bottom-color 750ms ease, border-color 750ms ease;
 }
@@ -119,6 +124,13 @@ a {
 
 .dark a {
   color: #f8f9fa;
+}
+
+.dark .date-input {
+  color: #f8f9fa;
+  background-color: #212529;
+  border-color: #f8f9fa;
+  color-scheme: dark;
 }
 
 .easter-egg-text.🐕 {

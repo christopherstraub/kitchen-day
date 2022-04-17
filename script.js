@@ -8,37 +8,74 @@ let countdownElement = document.querySelector('.countdown');
 let previousDayElement = document.querySelector('.previous-day');
 let nextDayElement = document.querySelector('.next-day');
 let todayElement = document.querySelector('.today');
+let dateInputElement = document.querySelector('.date-input');
 let easterEggElement = document.querySelector('.easter-egg');
 
-let people = [
-  { index: 0, name: 'Christopher' },
-  { index: 1, name: 'not Christopher' },
-];
+let people = ['Christopher', 'not Christopher'];
 
 let lastTurn = {
-  personIndex: people[1].index,
-  date: new Date(Date.UTC(2021, 2, 15, 6)),
+  personIndex: 1,
+  date: new Date(2021, 2, 15),
 };
 
 let dayOffset = 0;
 
 // Functions declarations.
-
-// Check whether a date is observing daylight saving time.
+// Check whether a date is in Daylight Saving Time.
 const isDST = (date) => {
-  let jan = new Date(date.getFullYear(), 0, 1).getTimezoneOffset();
-  let jul = new Date(date.getFullYear(), 6, 1).getTimezoneOffset();
-  return Math.max(jan, jul) !== date.getTimezoneOffset();
+  /**
+   * Date.prototype.getTimezoneOffset() returns the difference, in minutes,
+   * between the date as evaluated in the UTC time zone and as evaluated in the
+   * local time zone. Thus, if the local time zone does not observe DST,
+   * getTimezoneOffset() always returns the same value. However, if the local
+   * time zone does observe DST, the value returned by getTimezoneOffset() if
+   * the date is in DST (clocks set forward 1 hour) will be 60 less than the
+   * value returned if the date is not in DST.
+   */
+  let janTimezoneOffset = new Date(
+    date.getFullYear(),
+    0,
+    1
+  ).getTimezoneOffset();
+  let julTimezoneOffset = new Date(
+    date.getFullYear(),
+    6,
+    1
+  ).getTimezoneOffset();
+
+  /**
+   * Whether or not the local time zone observes DST,
+   * Math.max(janTimezoneOffset, julTimezoneOffset) will return the time zone
+   * offset when the time zone is in standard time. If the date time offset is
+   * less than standard time offset, the date is in DST. (The only exception to
+   * this is the Antarctica/Casey time zone, where DST is behind standard time
+   * [DST offset is greater than standard time offset].)
+   */
+  return (
+    date.getTimezoneOffset() < Math.max(janTimezoneOffset, julTimezoneOffset)
+  );
 };
 
-const getTurn = (dateChecked, lastTurn) => {
-  let fullDaysSinceLastTurn = Math.floor(
-    Math.floor((dateChecked - lastTurn.date) / 8.64e7)
-  );
+// Adjust last turn date according to time zone status (standard time or DST).
+function getCorrectedLastTurnDate(lastTurnDate, date) {
+  const lastTurnDateCopy = new Date(lastTurnDate);
 
-  if (fullDaysSinceLastTurn % 2 === 0) return people[lastTurn.personIndex].name;
-  else if (lastTurn.personIndex === 0) return people[1].name;
-  else return people[0].name;
+  if (isDST(date) && !isDST(lastTurnDate))
+    lastTurnDateCopy.setHours(lastTurnDate.getHours() - 1);
+  else if (!isDST(date) && isDST(lastTurnDate))
+    lastTurnDateCopy.setHours(lastTurnDate.getHours() + 1);
+
+  return lastTurnDateCopy;
+}
+
+const getTurn = (date, lastTurn) => {
+  const lastTurnDate = getCorrectedLastTurnDate(lastTurn.date, date);
+
+  const fullDaysSinceLastTurn = Math.floor((date - lastTurnDate) / 8.64e7);
+
+  // Turn same as last turn if full days since last turn is even.
+  if (fullDaysSinceLastTurn % 2 === 0) return people[lastTurn.personIndex];
+  else return people[lastTurn.personIndex === 0 ? 1 : 0];
 };
 
 const setTurn = (turn) => {
@@ -52,10 +89,10 @@ const setTurn = (turn) => {
       : `It's ${turn}'s turn today.`;
 };
 
-const getCountdown = (dateChecked, lastTurn) => {
-  if (isDST(dateChecked)) dateChecked.setHours(dateChecked.getHours() + 1);
+const getCountdown = (date, lastTurn) => {
+  const lastTurnDate = getCorrectedLastTurnDate(lastTurn.date, date);
 
-  let millisecondsSinceLastTurn = dateChecked - lastTurn.date;
+  let millisecondsSinceLastTurn = date - lastTurnDate;
 
   let millisecondsUntilNextTurn =
     Math.ceil(millisecondsSinceLastTurn / 8.64e7) * 8.64e7 -
@@ -101,6 +138,14 @@ const setTime = (timeElement, date) => {
   }).format(date);
 };
 
+const setDateInput = (dateInputElement, date) => {
+  const dateCopy = new Date(date);
+
+  dateCopy.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+
+  dateInputElement.value = dateCopy.toISOString().substring(0, 10);
+};
+
 const setDatePrefix = () => {
   datePrefixElement.textContent = !dayOffset ? 'Today is' : 'On';
 };
@@ -133,7 +178,7 @@ const setEasterEgg = (month, day, year) => {
 };
 
 const update = () => {
-  date = new Date();
+  const date = new Date();
   date.setDate(date.getDate() + dayOffset);
   date.setMilliseconds(0);
 
@@ -141,6 +186,8 @@ const update = () => {
 
   setDate(dateElement, date);
   setTime(timeElement, date);
+  if (document.activeElement !== dateInputElement)
+    setDateInput(dateInputElement, date);
 
   setDatePrefix();
   setTimePrefix();
@@ -156,7 +203,6 @@ const update = () => {
 };
 
 // Function calls.
-
 update();
 setInterval(update, 1000);
 
@@ -173,4 +219,14 @@ nextDayElement.addEventListener('click', () => {
 todayElement.addEventListener('click', () => {
   dayOffset = 0;
   update();
+});
+
+dateInputElement.addEventListener('change', (event) => {
+  if (!event.target.validity.badInput) {
+    const [year, month, day] = event.target.value.split('-');
+    const date = new Date(year, month - 1, day);
+
+    dayOffset = Math.ceil((date - new Date()) / 8.64e7);
+    update();
+  }
 });

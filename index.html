@@ -9,10 +9,7 @@
     />
     <meta name="author" content="Christopher Straub" />
     <title>Whose Kitchen Day?</title>
-    <link
-      rel="canonical"
-      href="https://christopherstraub.github.io/kitchen-day/"
-    />
+    <link rel="canonical" href="https://christopherstraub.me/kitchen-day/" />
 
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" />
@@ -57,7 +54,7 @@
         </div>
       </header>
 
-      <main class="px-3">
+      <main class="p-3">
         <h1 class="turn mb-0"></h1>
         <h1
           class="easter-egg visually-hidden mt-3"
@@ -77,17 +74,19 @@
             <span class="countdown fw-normal"></span>.
           </p>
         </div>
-        <p class="lead">
+        <div class="lead mb-5">
           <button class="btn btn-lg btn-secondary previous-day">
             Previous day
           </button>
           <button class="btn btn-lg btn-secondary today">Today</button>
           <button class="btn btn-lg btn-secondary next-day">Next day</button>
-        </p>
+        </div>
+
+        <input type="date" class="date-input lead" required />
       </main>
 
       <footer class="mt-auto">
-        <p>
+        <p class="mb-0">
           <a href="https://christopherstraub.me/" class="fw-light"
             >Christopher Straub</a
           >
