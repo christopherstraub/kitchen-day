@@ -87,8 +87,11 @@ a {
 }
 
 .date-input {
-  border-radius: 5px;
+  color: $clr-dark;
+  background-color: $clr-light;
   border: 1px solid $clr-dark;
+  border-radius: 5px;
+  color-scheme: light;
 }
 
 body,

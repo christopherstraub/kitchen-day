@@ -79,8 +79,11 @@ a:hover {
 }
 
 .date-input {
-  border-radius: 5px;
+  color: #212529;
+  background-color: #f8f9fa;
   border: 1px solid #212529;
+  border-radius: 5px;
+  color-scheme: light;
 }
 
 body,
