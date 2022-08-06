@@ -78,15 +78,22 @@ const getTurn = (date, lastTurn) => {
   else return people[lastTurn.personIndex === 0 ? 1 : 0];
 };
 
-const setTurn = (turn) => {
-  turnElement.textContent =
-    dayOffset < 0
-      ? `
-  It was ${turn}'s turn this day.`
-      : dayOffset > 0
-      ? `
-  It's ${turn}'s turn this day.`
-      : `It's ${turn}'s turn today.`;
+const setTurn = (turn, date) => {
+  if (turn.startsWith('not ') && date >= new Date(2022, 7, 6)) {
+    const name = turn.slice(4);
+    turnElement.innerHTML =
+      dayOffset < 0
+        ? `It was <s>not</s> ${name}'s turn this day.`
+        : dayOffset > 0
+        ? `It's <s>not</s> ${name}'s turn this day.`
+        : `It's <s>not</s> ${name}'s turn today.`;
+  } else
+    turnElement.textContent =
+      dayOffset < 0
+        ? `It was ${turn}'s turn this day.`
+        : dayOffset > 0
+        ? `It's ${turn}'s turn this day.`
+        : `It's ${turn}'s turn today.`;
 };
 
 const getCountdown = (date, lastTurn) => {
@@ -182,7 +189,7 @@ const update = () => {
   date.setDate(date.getDate() + dayOffset);
   date.setMilliseconds(0);
 
-  setTurn(getTurn(date, lastTurn));
+  setTurn(getTurn(date, lastTurn), date);
 
   setDate(dateElement, date);
   setTime(timeElement, date);
