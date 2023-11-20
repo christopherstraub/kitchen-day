@@ -1,5 +1,7 @@
 // Variable initializations.
 let turnElement = document.querySelector('.turn');
+let snackTurnElement = document.querySelector('.snack-turn');
+let snackTurnDaysElement = document.querySelector('.snack-turn-days');
 let dateElement = document.querySelector('.date');
 let timeElement = document.querySelector('.time');
 let datePrefixElement = document.querySelector('.date-prefix');
@@ -10,6 +12,36 @@ let nextDayElement = document.querySelector('.next-day');
 let todayElement = document.querySelector('.today');
 let dateInputElement = document.querySelector('.date-input');
 let easterEggElement = document.querySelector('.easter-egg');
+
+const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const dadDays = ['Sat', 'Sun', 'Mon', 'Wed'];
+const momDays = ['Tue', 'Thu', 'Fri'];
+const snacks = ['🍗', '🍖', '🦴', '🍎', '🍌', '🥒', '🥖'];
+const randomSnack = snacks[Math.floor(Math.random() * snacks.length)];
+
+const getSnackTurn = (date) => {
+  const currentDay = DAYS[date.getDay()];
+
+  if (dadDays.includes(currentDay)) return 'Dad';
+  else if (momDays.includes(currentDay)) return 'Mom';
+};
+
+const setSnackTurn = (turn) => {
+  snackTurnElement.textContent = `${turn}'s day! 🐕${randomSnack}`;
+};
+
+const getSnackTurnDays = (date) => {
+  const currentDay = DAYS[date.getDay()];
+
+  if (dadDays.includes(currentDay))
+    return dadDays.map((day) => (day === currentDay ? `<b>${day}</b>` : day));
+  else if (momDays.includes(currentDay))
+    return momDays.map((day) => (day === currentDay ? `<b>${day}</b>` : day));
+};
+
+const setSnackTurnDays = (turnDays) => {
+  snackTurnDaysElement.innerHTML = turnDays.join('/');
+};
 
 let people = ['Christopher', 'not Christopher'];
 
@@ -189,6 +221,8 @@ const update = () => {
   date.setDate(date.getDate() + dayOffset);
   date.setMilliseconds(0);
 
+  setSnackTurn(getSnackTurn(date));
+  setSnackTurnDays(getSnackTurnDays(date));
   setTurn(getTurn(date, lastTurn), date);
 
   setDate(dateElement, date);
