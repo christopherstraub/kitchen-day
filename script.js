@@ -174,7 +174,7 @@ const setEasterEgg = (month, day, year) => {
     easterEggElement.textContent = '🧔🎉🎂🎁';
     easterEggElement.classList.remove('visually-hidden');
     turnElement.classList.add('easter-egg-text', '🧔');
-  } else if (month === 11 && day === 25) {
+  } else if (month === 11 && day === 23) {
     easterEggElement.textContent = '🦃🥧🍂';
     easterEggElement.classList.remove('visually-hidden');
     turnElement.classList.add('easter-egg-text', '🦃');
